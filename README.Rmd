@@ -43,23 +43,31 @@ knitr::kable( rbind(head(df0), tail(df0)) )
 knitr::kable( tabfr )
 ```
 
-- Then, for each *région*, we apply `ftab` for the whole region and for each *département* within this *région*. All tables are saved in a named list.
+- Then, for each *région*, we apply `ftab` for the whole region and for each *département* within this region. All tables are saved in a named list.
 
 ```{r table regions}
 
 ```
+
+```{r, echo = TRUE}
+str(ltab)
+```
+
 
 - Finally, elements of the list can be parsed to `exemple_rapport.Rmd` to generate a report, individually or for all regions in the list.
 ```{r unit report}
 
 ```
 
-- Exemple of one report:
-```{r}
+- To generate one report which is saved with time stamp
+```{r, echo = TRUE, eval = FALSE}
  unit_report(reg = "A")
 ```
 
+- To generate all reports
+```{r all reports, echo = TRUE, eval = FALSE}
 
+```
 
 
 

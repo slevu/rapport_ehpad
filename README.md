@@ -168,51 +168,105 @@ Generate reports by region
 </table>
 
 -   Then, for each *région*, we apply `ftab` for the whole region and
-    for each *département* within this *région*. All tables are saved in
-    a named list.
+    for each *département* within this region. All tables are saved in a
+    named list.
+
+<!-- -->
+
+    str(ltab)
+
+    ## List of 3
+    ##  $ A:List of 5
+    ##   ..$ A :'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 12 19 7 6
+    ##   .. ..$ y       : int [1:4] 21 5 16 17
+    ##   ..$ A1:'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 3 8 2 1
+    ##   .. ..$ y       : int [1:4] 8 1 2 9
+    ##   ..$ A2:'data.frame':   3 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:3] "e1" "e2" "e3"
+    ##   .. ..$ x       : int [1:3] 6 4 1
+    ##   .. ..$ y       : int [1:3] 8 0 6
+    ##   ..$ A4:'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 3 3 2 2
+    ##   .. ..$ y       : int [1:4] 5 3 6 3
+    ##   ..$ A3:'data.frame':   3 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:3] "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:3] 4 2 3
+    ##   .. ..$ y       : int [1:3] 1 2 5
+    ##  $ B:List of 8
+    ##   ..$ B :'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 17 25 9 17
+    ##   .. ..$ y       : int [1:4] 41 35 29 23
+    ##   ..$ B1:'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 4 3 2 1
+    ##   .. ..$ y       : int [1:4] 4 4 5 0
+    ##   ..$ B2:'data.frame':   3 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:3] "e1" "e2" "e3"
+    ##   .. ..$ x       : int [1:3] 3 2 1
+    ##   .. ..$ y       : int [1:3] 8 5 9
+    ##   ..$ B3:'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 1 1 1 4
+    ##   .. ..$ y       : int [1:4] 9 2 4 5
+    ##   ..$ B4:'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 5 6 2 5
+    ##   .. ..$ y       : int [1:4] 3 8 4 2
+    ##   ..$ B5:'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 2 5 3 2
+    ##   .. ..$ y       : int [1:4] 5 3 7 7
+    ##   ..$ B6:'data.frame':   3 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:3] "e1" "e2" "e4"
+    ##   .. ..$ x       : int [1:3] 0 4 4
+    ##   .. ..$ y       : int [1:3] 7 5 2
+    ##   ..$ B7:'data.frame':   3 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:3] "e1" "e2" "e4"
+    ##   .. ..$ x       : int [1:3] 2 4 1
+    ##   .. ..$ y       : int [1:3] 5 8 7
+    ##  $ C:List of 6
+    ##   ..$ C :'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 18 11 14 15
+    ##   .. ..$ y       : int [1:4] 16 31 22 27
+    ##   ..$ C1:'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 6 0 2 2
+    ##   .. ..$ y       : int [1:4] 5 8 2 0
+    ##   ..$ C2:'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 5 3 5 2
+    ##   .. ..$ y       : int [1:4] 6 6 9 6
+    ##   ..$ C4:'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 4 2 3 3
+    ##   .. ..$ y       : int [1:4] 0 7 9 6
+    ##   ..$ C5:'data.frame':   4 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:4] "e1" "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:4] 3 2 4 4
+    ##   .. ..$ y       : int [1:4] 5 8 1 9
+    ##   ..$ C3:'data.frame':   3 obs. of  3 variables:
+    ##   .. ..$ typ_etab: chr [1:3] "e2" "e3" "e4"
+    ##   .. ..$ x       : int [1:3] 4 0 4
+    ##   .. ..$ y       : int [1:3] 2 1 6
 
 -   Finally, elements of the list can be parsed to `exemple_rapport.Rmd`
     to generate a report, individually or for all regions in the list.
 
--   Exemple of one report:
+-   To generate one report which is saved with time stamp
 
 <!-- -->
 
-    ## 
-    ## 
-    ## processing file: exemple_rapport.Rmd
+     unit_report(reg = "A")
 
-    ##   |                                                                              |                                                                      |   0%  |                                                                              |..........                                                            |  14%
-    ##    inline R code fragments
-    ## 
-    ##   |                                                                              |....................                                                  |  29%
-    ## label: unnamed-chunk-5 (with options) 
-    ## List of 1
-    ##  $ include: logi FALSE
-    ## 
-    ##   |                                                                              |..............................                                        |  43%
-    ##   ordinary text without R code
-    ## 
-    ##   |                                                                              |........................................                              |  57%
-    ## label: unnamed-chunk-6 (with options) 
-    ## List of 1
-    ##  $ echo: logi FALSE
-    ## 
-    ##   |                                                                              |..................................................                    |  71%
-    ##   ordinary text without R code
-    ## 
-    ##   |                                                                              |............................................................          |  86%
-    ## label: unnamed-chunk-7 (with options) 
-    ## List of 2
-    ##  $ echo   : logi FALSE
-    ##  $ results: chr "asis"
-    ## 
-    ##   |                                                                              |......................................................................| 100%
-    ##   ordinary text without R code
+-   To generate all reports
 
-    ## output file: exemple_rapport.knit.md
+<!-- -->
 
-    ## "C:/Users/s.levu/Documents/RStudio/bin/pandoc/pandoc" +RTS -K512m -RTS exemple_rapport.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output 2021-02-10_A.html --email-obfuscation none --self-contained --standalone --section-divs --template "C:\Users\s.levu\Documents\R\R-3.6.2\library\rmarkdown\rmd\h\default.html" --no-highlight --variable highlightjs=1 --variable "theme:bootstrap" --include-in-header "C:\Users\S329F~1.LEV\AppData\Local\Temp\RtmpMdCJ2o\rmarkdown-str2198280c4950.html" --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --lua-filter "C:/Users/s.levu/Documents/R/R-3.6.2/library/rmarkdown/rmd/lua/pagebreak.lua" --lua-filter "C:/Users/s.levu/Documents/R/R-3.6.2/library/rmarkdown/rmd/lua/latex-div.lua"
-
-    ## 
-    ## Output created: 2021-02-10_A.html
+    dummy <- lapply(names(ltab), unit_report)
