@@ -1,0 +1,40 @@
+---
+title: "`r paste('Rapport ESMS pour la région', params$region)`"
+params: 
+  region: "A"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+
+---
+
+```{r, include = FALSE}
+## read data
+ltab <- readRDS("ltab.rds")
+## tab function
+to_tab <- function(df, cap){
+  kableExtra::kable_styling( kableExtra::kbl(df, 
+                                           caption = cap),
+                           bootstrap_options = "striped", full_width = FALSE)
+}
+```
+
+## Données Régionales
+```{r, echo = FALSE}
+to_tab(df = ltab[[params$region]][[1]], cap = params$region)
+```
+
+
+## Données départementales
+```{r, echo = FALSE, results = 'asis'}
+deps <- ltab[[params$region]][-1]
+for (i in 1:length(deps)){
+  cat("\n")
+  x <- to_tab(deps[[i]], names(deps)[i])
+  cat(x)
+}
+
+```
+
+
