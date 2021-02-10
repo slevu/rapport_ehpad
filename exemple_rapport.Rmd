@@ -20,7 +20,7 @@ to_tab <- function(df, cap){
 }
 ```
 
-## Données Régionales
+## Données régionales
 ```{r, echo = FALSE}
 to_tab(df = ltab[[params$region]][[1]], cap = params$region)
 ```

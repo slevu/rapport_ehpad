@@ -11,7 +11,7 @@ region <- LETTERS[1:k]
 set.seed(123)
 {
   ndpt_par_region <- rpois(k, ndptfr/nregfr)
-  # reg <- rep(region, ndpt_par_region)
+  reg <- rep(region, ndpt_par_region)
   dep <- paste0(reg, sequence(ndpt_par_region))
   etab <- paste0("e",1:netab)
   ## all etab in all dpt
@@ -28,8 +28,9 @@ set.seed(123)
     stringsAsFactors = FALSE
   )
 }
+saveRDS(df0, "mockdataset_ehpad.rds")
 
-## summarize function
+##---- summarize function ----
 ftab <- function(df){
   aggregate(df[, c("x","y")], 
             list(typ_etab = df$etab), 

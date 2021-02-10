@@ -1,0 +1,66 @@
+---
+title: "README"
+author: "Stephane"
+date: "10/02/2021"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r read}
+knitr::read_chunk("exemple.R")
+```
+
+```{r mock individual data}
+
+```
+## Generate reports by region
+- First, we create a mock dataset with 
+    - `r k` *régions*
+    - For each *région* a variable number of *départements*
+    - For each *département*, up to `r netab` types of *établissements* (`typ_etab`), also variable
+    - And two numeric variables (with missing values) to be summarized by `typ_etab`
+- It looks like this :
+
+```{r}
+knitr::kable( rbind(head(df0), tail(df0)) )
+```
+
+- We want to summarize values by `typ_etab` and this is done with a simple function
+
+```{r summarize function, echo = TRUE}
+
+```
+
+- Now we can look at global results
+```{r table France}
+
+```
+
+```{r}
+knitr::kable( tabfr )
+```
+
+- Then, for each *région*, we apply `ftab` for the whole region and for each *département* within this *région*. All tables are saved in a named list.
+
+```{r table regions}
+
+```
+
+- Finally, elements of the list can be parsed to `exemple_rapport.Rmd` to generate a report, individually or for all regions in the list.
+```{r unit report}
+
+```
+
+- Exemple of one report:
+```{r}
+ unit_report(reg = "A")
+```
+
+
+
+
+
+
