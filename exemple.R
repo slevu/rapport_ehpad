@@ -57,16 +57,17 @@ ltab <- lapply(setNames(unique(df0$region), unique(df0$region)), function(r){
 saveRDS(ltab, "ltab.rds")
 
 ##---- unit report ----
-unit_report <- function(reg = "A", fmt = "html"){
+unit_report <- function(reg = "A", fmt = "html", verbose = FALSE){
+  OFN <- paste0(paste0(Sys.Date(), "_"), reg, ".", fmt)
     rmarkdown::render(input = "exemple_rapport.Rmd",
                       output_format = paste0(fmt, "_document"),
                       params = list(region = reg),
                       encoding = "UTF-8",
-                      output_file = paste0(paste0(Sys.Date(), "_"), 
-                                           reg,
-                                           ".", fmt) )
+                      output_file = OFN,
+                      quiet = TRUE)
+    if (verbose) print(paste("Output saved to", OFN))
   }
-# unit_report()
+# unit_report(reg = "B", verbose = TRUE)
 # unit_report(fmt = "pdf")
 
 ##---- all reports ----

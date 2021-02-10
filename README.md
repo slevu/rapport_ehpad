@@ -263,7 +263,9 @@ Generate reports by region
 
 <!-- -->
 
-     unit_report(reg = "A")
+     unit_report(reg = "A", verbose = TRUE)
+
+    ## [1] "Output saved to 2021-02-10_A.html"
 
 -   To generate all reports
 

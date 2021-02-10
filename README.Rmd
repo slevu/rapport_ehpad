@@ -60,8 +60,8 @@ str(ltab)
 ```
 
 - To generate one report which is saved with time stamp
-```{r, echo = TRUE, eval = FALSE}
- unit_report(reg = "A")
+```{r, echo = TRUE}
+ unit_report(reg = "A", verbose = TRUE)
 ```
 
 - To generate all reports
