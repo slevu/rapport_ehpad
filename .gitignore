@@ -6,3 +6,5 @@
 *.rds
 archive
 *.Rproj
+*.pdf
+*.tex
